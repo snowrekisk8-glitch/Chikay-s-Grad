@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Ate Marcia</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Lora:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+
+/* Background */
+body{
+margin:0;
+height:100vh;
+display:flex;
+align-items:center;
+justify-content:center;
+background:linear-gradient(135deg,#065f46,#10b981,#6ee7b7);
+font-family:'Lora',serif;
+overflow:hidden;
+cursor:pointer;
+}
+
+/* Gift Box */
+.gift{
+position:absolute;
+width:120px;
+height:120px;
+background:#10b981;
+border-radius:10px;
+display:flex;
+align-items:center;
+justify-content:center;
+box-shadow:0 10px 30px rgba(0,0,0,0.2);
+transition:0.6s;
+}
+
+.gift:before{
+content:'🎁';
+font-size:50px;
+}
+
+/* Hidden card */
+.container{
+position:absolute;
+background:white;
+padding:40px;
+width:90%;
+max-width:720px;
+border-radius:16px;
+box-shadow:0 20px 50px rgba(0,0,0,0.2);
+opacity:0;
+transform:scale(0.8);
+transition:0.6s;
+}
+
+/* Show card */
+.container.show{
+opacity:1;
+transform:scale(1);
+}
+
+/* Hide gift */
+.gift.hide{
+opacity:0;
+transform:scale(0);
+}
+
+/* Typography */
+h1{
+font-family:'Montserrat',sans-serif;
+color:#065f46;
+font-size:36px;
+margin-bottom:20px;
+}
+
+#message{
+font-size:18px;
+line-height:1.7;
+white-space:pre-line;
+color:#333;
+}
+
+.quote{
+margin-top:30px;
+font-style:italic;
+text-align:center;
+font-size:19px;
+color:#555;
+}
+
+/* Cursor */
+.cursor{
+display:inline-block;
+width:2px;
+background:#065f46;
+margin-left:4px;
+animation:blink 1s infinite;
+}
+
+@keyframes blink{
+0%{opacity:1}
+50%{opacity:0}
+100%{opacity:1}
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="gift" id="gift"></div>
+
+<div class="container" id="card">
+<h1>CHIKAAAAAAAAAAAAAAAAAYYYYYYYYYYYYYYYYYYYYYYY!</h1>
+<div id="message"></div>
+<div id="quote"></div>
+<span class="cursor"></span>
+</div>
+
+<script>
+
+const messageText = `Happy graddddddd! Wara ak masisiring haim kay maaram ak nga kaya it nim tim kinabuhi ha college HAHAHAHAHA. Joke lang, basta hinumdumi nga yadi kami para haiyo, and ayaw kami hingangalimti haaaaaaa.
+
+Kulang an almost 1 year ta nga pagsarangkay, siguro dapat lifetime access na in HAHAHA. Jokes aside, karuyag ko kam makita na successful hit iyo kinabuhi.
+
+Tim college life magiging puno it hin uran kadamo nga problems, pero ayaw na ayaw papabay-e tim sarili. Throughout all of that dama, never ever forget where you came from.
+
+Always have your smile on your face, asya kasi it noticeable hitim pagmumukha, maupay ko tim smile HAHAHAHAHHA.
+
+Asya la it, dire ko kasi mai-express tak karuyag sidngon dinhi. I will always be rooting for you!
+`;
+
+const quoteText = `"Always have you smile on, the rest will follow."`;
+
+let i = 0;
+
+function typeMessage(){
+if(i < messageText.length){
+document.getElementById("message").innerHTML += messageText.charAt(i);
+i++;
+setTimeout(typeMessage,25);
+}else{
+typeQuote();
+}
+}
+
+let q = 0;
+
+function typeQuote(){
+if(q < quoteText.length){
+document.getElementById("quote").innerHTML =
+'<div class="quote">' + quoteText.substring(0,q+1) + '</div>';
+q++;
+setTimeout(typeQuote,35);
+}
+}
+
+/* Click anywhere to open gift */
+document.body.addEventListener("click", function(){
+
+document.getElementById("gift").classList.add("hide");
+
+setTimeout(()=>{
+document.getElementById("card").classList.add("show");
+typeMessage();
+},400);
+
+},{once:true});
+
+</script>
+
+</body>
+</html>
